@@ -1,6 +1,21 @@
 from django.urls import path
-from .views import home
+from django.contrib.auth import views as auth_views
+
+from .views import home, register_view
+
 
 urlpatterns = [
     path('', home, name='home'),
+
+    path(
+        'login/',
+        auth_views.LoginView.as_view(template_name='login.html'),
+        name='login'
+    ),
+
+    path(
+        'register/',
+        register_view,
+        name='register'
+    ),
 ]
