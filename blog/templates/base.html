@@ -149,12 +149,60 @@
 
         <!-- BUTTON -->
 
+
+        {% if user.is_authenticated %}
+
+              <span class="fw-bold">
+                  Hello, {{ user.username }}
+              </span>
+
+              <a
+                href="/create"
+                class="btn btn-primary"
+              >
+                Create Post
+              </a>
+
+              <form
+                method="post"
+                action="{% url 'logout' %}"
+              >
+                  {% csrf_token %}
+
+                  <button
+                    type="submit"
+                    class="btn btn-outline-dark"
+                  >
+                      Logout
+                  </button>
+
+              </form>
+
+          {% else %}
+
+              <a
+                href="{% url 'login' %}"
+                class="btn btn-outline-primary"
+              >
+                Login
+              </a>
+
+              <a
+                href="{% url 'register' %}"
+                class="btn btn-primary"
+              >
+                Register
+              </a>
+
+          {% endif %}
+
         <a
           href="/create/"
           class="btn btn-primary"
         >
           Create Post
         </a>
+
 
       </div>
 
