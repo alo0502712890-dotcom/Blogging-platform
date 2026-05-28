@@ -37,4 +37,9 @@ urlpatterns = [
         register_view,
         name='register'
     ),
+path(
+    'profile/',
+    lambda request: render(request, 'profile.html'),
+    name='profile'
+),
 ]
