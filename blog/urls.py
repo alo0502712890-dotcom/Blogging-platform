@@ -27,4 +27,9 @@ path(
     lambda request: render(request, 'profile.html'),
     name='profile'
 ),
+path(
+    'category/',
+    lambda request: render(request, 'category.html'),
+    name='category'
+),
 ]
