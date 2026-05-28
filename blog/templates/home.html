@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<section id="blog-hero" class="blog-hero section py-5">
+<section id="blog-hero" class="blog-hero section">
 
   <div class="container">
 
@@ -11,6 +11,7 @@
 
       {% for post in posts %}
 
+      <!-- MAIN BIG POST -->
       {% if forloop.first %}
 
       <article class="blog-item featured">
@@ -18,7 +19,7 @@
         <img
           src="{% static 'img/blog/blog-post-1.webp' %}"
           alt=""
-          class="img-fluid rounded-4"
+          class="img-fluid"
         >
 
         <div class="blog-content">
@@ -29,7 +30,7 @@
               {{ post.created_at }}
             </span>
 
-            <span class="category badge bg-primary">
+            <span class="category">
               Technology
             </span>
 
@@ -43,25 +44,20 @@
             {{ post.content|truncatewords:20 }}
           </p>
 
-          <a
-            href="/post/"
-            class="btn btn-light mt-3"
-          >
-            Read More
-          </a>
-
         </div>
 
       </article>
 
       {% else %}
 
+      <!-- SMALL POSTS -->
+
       <article class="blog-item">
 
         <img
           src="{% static 'img/blog/blog-post-2.webp' %}"
           alt=""
-          class="img-fluid rounded-4"
+          class="img-fluid"
         >
 
         <div class="blog-content">
@@ -72,7 +68,7 @@
               {{ post.created_at }}
             </span>
 
-            <span class="category badge bg-dark">
+            <span class="category">
               Blog
             </span>
 
@@ -81,13 +77,6 @@
           <h3 class="post-title">
             {{ post.title }}
           </h3>
-
-          <a
-            href="/post/"
-            class="btn btn-outline-light btn-sm mt-2"
-          >
-            Read More
-          </a>
 
         </div>
 
@@ -107,7 +96,7 @@
 
 
 
-<section id="latest-posts" class="latest-posts section py-5">
+<section id="latest-posts" class="latest-posts section">
 
   <div class="container section-title">
 
@@ -117,7 +106,7 @@
 
   </div>
 
-  <div class="container mt-5">
+  <div class="container">
 
     <div class="row gy-4">
 
@@ -125,7 +114,7 @@
 
       <div class="col-lg-4">
 
-        <article class="shadow-sm rounded-4 overflow-hidden h-100 bg-white">
+        <article>
 
           <div class="post-img">
 
@@ -137,47 +126,35 @@
 
           </div>
 
-          <div class="p-4">
+          <p class="post-category">
+            Programming
+          </p>
 
-            <p class="post-category text-primary fw-semibold">
-              Programming
-            </p>
+          <h2 class="title">
+            {{ post.title }}
+          </h2>
 
-            <h2 class="title fs-4 fw-bold">
-              {{ post.title }}
-            </h2>
+          <p>
+            {{ post.content|truncatewords:15 }}
+          </p>
 
-            <p>
-              {{ post.content|truncatewords:15 }}
-            </p>
+          <div class="d-flex align-items-center">
 
-            <a
-              href="/post/"
-              class="btn btn-outline-primary mt-2"
+            <img
+              src="{% static 'img/person/person-f-12.webp' %}"
+              alt=""
+              class="img-fluid post-author-img flex-shrink-0"
             >
-              Read More
-            </a>
 
-            <div class="d-flex align-items-center mt-4">
+            <div class="post-meta">
 
-              <img
-                src="{% static 'img/person/person-f-12.webp' %}"
-                alt=""
-                class="img-fluid post-author-img flex-shrink-0 rounded-circle"
-                width="50"
-              >
+              <p class="post-author">
+                {{ post.author }}
+              </p>
 
-              <div class="post-meta ms-3">
-
-                <p class="post-author mb-0 fw-semibold">
-                  {{ post.author }}
-                </p>
-
-                <p class="post-date text-muted small mb-0">
-                  {{ post.created_at }}
-                </p>
-
-              </div>
+              <p class="post-date">
+                {{ post.created_at }}
+              </p>
 
             </div>
 

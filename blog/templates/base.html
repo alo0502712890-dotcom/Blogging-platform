@@ -50,34 +50,6 @@
     rel="stylesheet"
   >
 
-  <style>
-
-    body {
-      background-color: #f5f7fb;
-    }
-
-    .blog-item,
-    .latest-posts article {
-      transition: 0.3s;
-    }
-
-    .blog-item:hover,
-    .latest-posts article:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .btn {
-      border-radius: 12px;
-    }
-
-    footer a:hover {
-      color: #0d6efd !important;
-      transition: 0.3s;
-    }
-
-  </style>
-
 </head>
 
 <body>
@@ -102,7 +74,7 @@
       >
 
         <h1 class="sitename m-0">
-          Blogy
+          Blog Platform
         </h1>
 
       </a>
@@ -114,6 +86,8 @@
       <!-- RIGHT SIDE -->
 
       <div class="d-flex align-items-center gap-3">
+
+        <!-- SOCIALS -->
 
         <a href="#" class="text-dark">
           <i class="bi bi-facebook"></i>
@@ -148,7 +122,6 @@
 
 
         <!-- BUTTON -->
-
 
         {% if user.is_authenticated %}
 
@@ -196,14 +169,6 @@
 
           {% endif %}
 
-        <a
-          href="/create/"
-          class="btn btn-primary"
-        >
-          Create Post
-        </a>
-
-
       </div>
 
     </div>
@@ -245,74 +210,89 @@
       <ul class="navbar-nav gap-4">
 
         <li class="nav-item">
-          <a class="nav-link active" href="/">
-            Home
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/about/">
-            About
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/category/">
-            Category
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/post/">
-            Blog Details
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/profile/">
-            Author Profile
-          </a>
-        </li>
-
-
-
-
-
-        <!-- DROPDOWN -->
-
-        <li class="nav-item dropdown">
 
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link active"
+            href="/"
+          >
+            Home
+          </a>
+
+        </li>
+
+
+
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
             href="#"
-            role="button"
-            data-bs-toggle="dropdown"
+          >
+            About
+          </a>
+
+        </li>
+
+
+
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="#"
+          >
+            Category
+          </a>
+
+        </li>
+
+
+
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="#"
+          >
+            Blog Details
+          </a>
+
+        </li>
+
+
+
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="#"
+          >
+            Author Profile
+          </a>
+
+        </li>
+
+
+
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="#"
           >
             Pages
           </a>
 
-          <ul class="dropdown-menu border-0 shadow rounded-4">
-
-            <li>
-              <a class="dropdown-item" href="/create/">
-                Create Post
-              </a>
-            </li>
-
-            <li>
-              <a class="dropdown-item" href="/login/">
-                Login
-              </a>
-            </li>
-
-            <li>
-              <a class="dropdown-item" href="/register/">
-                Register
-              </a>
-            </li>
-
-          </ul>
-
         </li>
 
 
@@ -320,9 +300,14 @@
 
 
         <li class="nav-item">
-          <a class="nav-link" href="/contact/">
+
+          <a
+            class="nav-link"
+            href="#"
+          >
             Contact
           </a>
+
         </li>
 
       </ul>
@@ -345,121 +330,6 @@
   {% endblock %}
 
 </main>
-
-
-
-
-
-<!-- FOOTER -->
-
-<footer class="bg-dark text-white mt-5 py-5">
-
-  <div class="container">
-
-    <div class="row">
-
-      <!-- LOGO -->
-
-      <div class="col-lg-4 mb-4">
-
-        <h3 class="fw-bold">
-          Blogy
-        </h3>
-
-        <p class="text-light">
-
-          Modern blogging platform built with
-          Django and Bootstrap.
-
-        </p>
-
-      </div>
-
-
-
-
-
-      <!-- LINKS -->
-
-      <div class="col-lg-4 mb-4">
-
-        <h5 class="fw-semibold mb-3">
-          Navigation
-        </h5>
-
-        <ul class="list-unstyled">
-
-          <li class="mb-2">
-            <a href="/" class="text-light text-decoration-none">
-              Home
-            </a>
-          </li>
-
-          <li class="mb-2">
-            <a href="/about/" class="text-light text-decoration-none">
-              About
-            </a>
-          </li>
-
-          <li class="mb-2">
-            <a href="/contact/" class="text-light text-decoration-none">
-              Contact
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-
-
-
-
-      <!-- SOCIAL -->
-
-      <div class="col-lg-4 mb-4">
-
-        <h5 class="fw-semibold mb-3">
-          Follow Us
-        </h5>
-
-        <div class="d-flex gap-3">
-
-          <a href="#" class="text-light fs-4">
-            <i class="bi bi-facebook"></i>
-          </a>
-
-          <a href="#" class="text-light fs-4">
-            <i class="bi bi-instagram"></i>
-          </a>
-
-          <a href="#" class="text-light fs-4">
-            <i class="bi bi-twitter"></i>
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-
-
-
-    <hr class="border-light">
-
-    <div class="text-center">
-
-      <p class="mb-0">
-        © 2026 Blogy Platform. All rights reserved.
-      </p>
-
-    </div>
-
-  </div>
-
-</footer>
 
 
 

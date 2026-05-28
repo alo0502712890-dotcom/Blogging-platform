@@ -1,13 +1,31 @@
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 
-from .models import Post
-from .forms import RegisterForm, PostForm
+from .forms import RegisterForm
+from .models import Profile
 
 
 def home(request):
 
-    posts = Post.objects.all()
+    posts = [
+        {
+            'title': 'First Blog Post',
+            'content': 'This is our first Django blog platform article.',
+            'author': 'Sofia'
+        },
+
+        {
+            'title': 'Bootstrap Integration',
+            'content': 'We connected Blogy template to Django.',
+            'author': 'Alona'
+        },
+
+        {
+            'title': 'Python Django',
+            'content': 'Our project is finally working.',
+            'author': 'Team'
+        }
+    ]
 
     return render(
         request,
@@ -15,52 +33,23 @@ def home(request):
         {'posts': posts}
     )
 
-
-def create_post(request):
-
-    if request.method == 'POST':
-
-        form = PostForm(request.POST)
-
-        if form.is_valid():
-
-            post = form.save(commit=False)
-
-            post.author = request.user
-
-            post.save()
-
-            form.save_m2m()
-
-            return redirect('/')
-
-    else:
-
-        form = PostForm()
-
-    return render(
-        request,
-        'create_post.html',
-        {'form': form}
-    )
-
-
 def register_view(request):
-
     if request.method == "POST":
-
         form = RegisterForm(request.POST)
 
         if form.is_valid():
-
             user = form.save()
+
+            Profile.objects.create(
+                user=user,
+                role=Profile.ROLE_READER
+            )
 
             login(request, user)
 
             return redirect("home")
 
     else:
-
         form = RegisterForm()
 
     return render(
