@@ -10,11 +10,15 @@
     <div class="text-center mb-5">
 
       <h1 class="fw-bold">
+
         Categories
+
       </h1>
 
       <p class="text-muted">
+
         Browse articles by category
+
       </p>
 
     </div>
@@ -25,7 +29,7 @@
 
     <div class="row gy-4">
 
-      <!-- CATEGORY CARD -->
+      {% for category in categories %}
 
       <div class="col-lg-4">
 
@@ -33,24 +37,51 @@
 
           <div class="card-body p-4 text-center">
 
-            <i class="bi bi-code-slash fs-1 text-primary"></i>
+            <i class="bi bi-folder fs-1 text-primary"></i>
+
+
+
+
 
             <h3 class="fw-bold mt-3">
-              Programming
+
+              {{ category.name }}
+
             </h3>
 
+
+
+
+
             <p class="text-muted">
-              Python, Django, JavaScript and more.
+
+              Articles in {{ category.name }} category
+
             </p>
+
+
+
+
 
             <span class="badge bg-primary mb-3">
-              12 Posts
+
+              {{ category.posts.count }} Posts
+
             </span>
 
+
+
+
+
             <div>
-              <a href="/" class="btn btn-outline-primary">
+
+              <a
+                href="/"
+                class="btn btn-outline-primary"
+              >
                 View Posts
               </a>
+
             </div>
 
           </div>
@@ -59,77 +90,19 @@
 
       </div>
 
+      {% empty %}
 
+      <div class="text-center py-5">
 
+        <h3>
 
+          No categories yet
 
-      <div class="col-lg-4">
-
-        <div class="card border-0 shadow-sm rounded-4 h-100">
-
-          <div class="card-body p-4 text-center">
-
-            <i class="bi bi-phone fs-1 text-success"></i>
-
-            <h3 class="fw-bold mt-3">
-              Technology
-            </h3>
-
-            <p class="text-muted">
-              Latest tech news and trends.
-            </p>
-
-            <span class="badge bg-success mb-3">
-              8 Posts
-            </span>
-
-            <div>
-              <a href="/" class="btn btn-outline-success">
-                View Posts
-              </a>
-            </div>
-
-          </div>
-
-        </div>
+        </h3>
 
       </div>
 
-
-
-
-
-      <div class="col-lg-4">
-
-        <div class="card border-0 shadow-sm rounded-4 h-100">
-
-          <div class="card-body p-4 text-center">
-
-            <i class="bi bi-book fs-1 text-danger"></i>
-
-            <h3 class="fw-bold mt-3">
-              Education
-            </h3>
-
-            <p class="text-muted">
-              Tutorials, courses and guides.
-            </p>
-
-            <span class="badge bg-danger mb-3">
-              15 Posts
-            </span>
-
-            <div>
-              <a href="/" class="btn btn-outline-danger">
-                View Posts
-              </a>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
+      {% endfor %}
 
     </div>
 
