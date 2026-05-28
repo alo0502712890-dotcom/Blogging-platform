@@ -42,13 +42,17 @@
 
                 <h1 class="fw-bold mb-0">
 
-                  Sofia Vikenteva
+                  {{ user.username }}
 
                 </h1>
 
+
+
+
+
                 <span class="badge bg-primary px-3 py-2">
 
-                  Frontend Developer
+                  {{ user.profile.role }}
 
                 </span>
 
@@ -60,8 +64,7 @@
 
               <p class="text-muted fs-5 mb-4">
 
-                Passionate frontend developer building modern
-                Django web applications with Bootstrap UI.
+                {{ user.profile.bio }}
 
               </p>
 
@@ -76,11 +79,15 @@
                 <div>
 
                   <h3 class="fw-bold mb-0">
-                    12
+
+                    {{ posts.count }}
+
                   </h3>
 
                   <small class="text-muted">
+
                     Posts
+
                   </small>
 
                 </div>
@@ -92,52 +99,18 @@
                 <div>
 
                   <h3 class="fw-bold mb-0">
-                    48
+
+                    {{ user.comments.count }}
+
                   </h3>
 
                   <small class="text-muted">
+
                     Comments
+
                   </small>
 
                 </div>
-
-
-
-
-
-                <div>
-
-                  <h3 class="fw-bold mb-0">
-                    1.2k
-                  </h3>
-
-                  <small class="text-muted">
-                    Followers
-                  </small>
-
-                </div>
-
-              </div>
-
-
-
-
-
-              <!-- SOCIALS -->
-
-              <div class="d-flex gap-3 mt-4">
-
-                <a href="#" class="btn btn-outline-dark rounded-circle">
-                  <i class="bi bi-facebook"></i>
-                </a>
-
-                <a href="#" class="btn btn-outline-dark rounded-circle">
-                  <i class="bi bi-instagram"></i>
-                </a>
-
-                <a href="#" class="btn btn-outline-dark rounded-circle">
-                  <i class="bi bi-twitter"></i>
-                </a>
 
               </div>
 
@@ -163,11 +136,22 @@
 
             </h2>
 
-            <a href="/create/" class="btn btn-primary">
+
+
+
+
+            {% if user.profile.role == "author" or user.profile.role == "admin" %}
+
+            <a
+              href="{% url 'create_post' %}"
+              class="btn btn-primary"
+            >
 
               Create Post
 
             </a>
+
+            {% endif %}
 
           </div>
 
@@ -177,7 +161,7 @@
 
           <div class="row gy-4">
 
-            <!-- POST CARD -->
+            {% for post in posts %}
 
             <div class="col-lg-6">
 
@@ -189,11 +173,15 @@
                   alt=""
                 >
 
+
+
+
+
                 <div class="card-body p-4">
 
                   <span class="badge bg-primary mb-3">
 
-                    Technology
+                    {{ post.category.name }}
 
                   </span>
 
@@ -203,7 +191,7 @@
 
                   <h4 class="fw-bold">
 
-                    Building a Django Blog Platform
+                    {{ post.title }}
 
                   </h4>
 
@@ -213,8 +201,7 @@
 
                   <p class="text-muted">
 
-                    Creating a responsive blogging platform
-                    using Django and Bootstrap.
+                    {{ post.content|truncatewords:15 }}
 
                   </p>
 
@@ -226,7 +213,7 @@
 
                     <small class="text-muted">
 
-                      May 28, 2026
+                      {{ post.created_at|date:"d M Y" }}
 
                     </small>
 
@@ -234,11 +221,42 @@
 
 
 
-                    <a href="/post/" class="btn btn-outline-primary">
+                    <div class="d-flex gap-2">
 
-                      Read More
+                        <a
+                          href="{% url 'post_detail' post.id %}"
+                          class="btn btn-outline-primary"
+                        >
+                          Read
+                        </a>
 
-                    </a>
+
+
+
+
+                        {% if post.author == user %}
+
+                        <a
+                          href="{% url 'update_post' post.id %}"
+                          class="btn btn-warning"
+                        >
+                          Edit
+                        </a>
+
+
+
+
+
+                        <a
+                          href="{% url 'delete_post' post.id %}"
+                          class="btn btn-danger"
+                        >
+                          Delete
+                        </a>
+
+                        {% endif %}
+
+                      </div>
 
                   </div>
 
@@ -248,80 +266,19 @@
 
             </div>
 
+            {% empty %}
 
+            <div class="text-center py-5">
 
+              <h3>
 
+                No posts yet
 
-            <!-- POST CARD -->
-
-            <div class="col-lg-6">
-
-              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
-
-                <img
-                  src="{% static 'img/blog/blog-post-2.webp' %}"
-                  class="img-fluid"
-                  alt=""
-                >
-
-                <div class="card-body p-4">
-
-                  <span class="badge bg-dark mb-3">
-
-                    Bootstrap
-
-                  </span>
-
-
-
-
-
-                  <h4 class="fw-bold">
-
-                    Responsive UI Design
-
-                  </h4>
-
-
-
-
-
-                  <p class="text-muted">
-
-                    Building adaptive interfaces for desktop,
-                    tablet and mobile devices.
-
-                  </p>
-
-
-
-
-
-                  <div class="d-flex justify-content-between align-items-center mt-4">
-
-                    <small class="text-muted">
-
-                      May 27, 2026
-
-                    </small>
-
-
-
-
-
-                    <a href="/post/" class="btn btn-outline-primary">
-
-                      Read More
-
-                    </a>
-
-                  </div>
-
-                </div>
-
-              </div>
+              </h3>
 
             </div>
+
+            {% endfor %}
 
           </div>
 

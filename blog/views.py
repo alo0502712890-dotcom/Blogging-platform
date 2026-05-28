@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, PostForm
 from .models import Profile, Post
+from .models import Category
 
 
 def home(request):
@@ -14,6 +15,12 @@ def home(request):
         'home.html',
         {'posts': posts}
     )
+def about_view(request):
+    return render(request, "about.html")
+
+
+def contact_view(request):
+    return render(request, "contact.html")
 
 
 def register_view(request):
@@ -75,4 +82,78 @@ def create_post(request):
         request,
         'create_post.html',
         {'form': form}
+    )
+
+def category_list(request):
+
+    categories = Category.objects.all()
+
+    return render(
+        request,
+        'category.html',
+        {'categories': categories}
+    )
+
+@login_required
+def profile_view(request):
+
+    posts = Post.objects.filter(author=request.user)
+
+    return render(
+        request,
+        'profile.html',
+        {
+            'posts': posts
+        }
+    )
+
+@login_required
+def update_post(request, post_id):
+
+    post = get_object_or_404(
+        Post,
+        id=post_id,
+        author=request.user
+    )
+
+    if request.method == "POST":
+
+        form = PostForm(
+            request.POST,
+            instance=post
+        )
+
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+
+    else:
+
+        form = PostForm(instance=post)
+
+    return render(
+        request,
+        "update_post.html",
+        {"form": form}
+    )
+
+@login_required
+def delete_post(request, post_id):
+
+    post = get_object_or_404(
+        Post,
+        id=post_id,
+        author=request.user
+    )
+
+    if request.method == "POST":
+
+        post.delete()
+
+        return redirect("profile")
+
+    return render(
+        request,
+        "delete_post.html",
+        {"post": post}
     )
