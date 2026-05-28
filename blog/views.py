@@ -2,6 +2,8 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 
 from .forms import RegisterForm
+from .models import Profile
+
 
 def home(request):
 
@@ -38,6 +40,11 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
 
+            Profile.objects.create(
+                user=user,
+                role=Profile.ROLE_READER
+            )
+
             login(request, user)
 
             return redirect("home")
@@ -45,4 +52,8 @@ def register_view(request):
     else:
         form = RegisterForm()
 
-    return render(request, "register.html", {"form": form})
+    return render(
+        request,
+        "register.html",
+        {"form": form}
+    )
