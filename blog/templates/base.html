@@ -50,6 +50,28 @@
     rel="stylesheet"
   >
 
+  <style>
+
+    body {
+      background-color: #f5f7fb;
+    }
+
+    .blog-item,
+    .latest-posts article {
+      transition: 0.3s;
+    }
+
+    .blog-item:hover,
+    .latest-posts article:hover {
+      transform: translateY(-8px);
+    }
+
+    .btn {
+      border-radius: 12px;
+    }
+
+  </style>
+
 </head>
 
 <body>
@@ -74,7 +96,7 @@
       >
 
         <h1 class="sitename m-0">
-          Blog Platform
+          Blogy
         </h1>
 
       </a>
@@ -86,8 +108,6 @@
       <!-- RIGHT SIDE -->
 
       <div class="d-flex align-items-center gap-3">
-
-        <!-- SOCIALS -->
 
         <a href="#" class="text-dark">
           <i class="bi bi-facebook"></i>
@@ -105,8 +125,6 @@
 
 
 
-        <!-- SEARCH -->
-
         <form class="d-flex">
 
           <input
@@ -121,10 +139,8 @@
 
 
 
-        <!-- BUTTON -->
-
         <a
-          href="/create"
+          href="/create/"
           class="btn btn-primary"
         >
           Create Post
@@ -171,89 +187,72 @@
       <ul class="navbar-nav gap-4">
 
         <li class="nav-item">
-
-          <a
-            class="nav-link active"
-            href="/"
-          >
+          <a class="nav-link active" href="/">
             Home
           </a>
-
         </li>
 
-
-
-
-
         <li class="nav-item">
-
-          <a
-            class="nav-link"
-            href="#"
-          >
+          <a class="nav-link" href="/about/">
             About
           </a>
-
         </li>
 
-
-
-
-
         <li class="nav-item">
-
-          <a
-            class="nav-link"
-            href="#"
-          >
+          <a class="nav-link" href="/category/">
             Category
           </a>
-
         </li>
 
-
-
-
-
         <li class="nav-item">
-
-          <a
-            class="nav-link"
-            href="#"
-          >
+          <a class="nav-link" href="/post/">
             Blog Details
           </a>
-
         </li>
 
-
-
-
-
         <li class="nav-item">
-
-          <a
-            class="nav-link"
-            href="#"
-          >
+          <a class="nav-link" href="/profile/">
             Author Profile
           </a>
-
         </li>
 
 
 
 
 
-        <li class="nav-item">
+        <li class="nav-item dropdown">
 
           <a
-            class="nav-link"
+            class="nav-link dropdown-toggle"
             href="#"
+            role="button"
+            data-bs-toggle="dropdown"
           >
             Pages
           </a>
 
+          <ul class="dropdown-menu border-0 shadow rounded-4">
+
+            <li>
+              <a class="dropdown-item" href="/create/">
+                Create Post
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="/login/">
+                Login
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="/register/">
+                Register
+              </a>
+            </li>
+
+          </ul>
+
         </li>
 
 
@@ -261,14 +260,9 @@
 
 
         <li class="nav-item">
-
-          <a
-            class="nav-link"
-            href="#"
-          >
+          <a class="nav-link" href="/contact/">
             Contact
           </a>
-
         </li>
 
       </ul>

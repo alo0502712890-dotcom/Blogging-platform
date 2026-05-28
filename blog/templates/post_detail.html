@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section py-5">
+
+  <div class="container">
+
+    <div class="row justify-content-center">
+
+      <div class="col-lg-8">
+
+        <!-- IMAGE -->
+
+        <img
+          src="{% static 'img/blog/blog-post-1.webp' %}"
+          class="img-fluid rounded-4 mb-4"
+          alt=""
+        >
+
+        <!-- CATEGORY -->
+
+        <span class="badge bg-primary mb-3">
+          Technology
+        </span>
+
+        <!-- TITLE -->
+
+        <h1 class="fw-bold mb-3">
+          How We Built Our Django Blog
+        </h1>
+
+        <!-- META -->
+
+        <div class="d-flex align-items-center gap-3 mb-4">
+
+          <img
+            src="{% static 'img/person/person-f-12.webp' %}"
+            class="rounded-circle"
+            width="50"
+            height="50"
+            alt=""
+          >
+
+          <div>
+
+            <h6 class="mb-0">
+              Sofia
+            </h6>
+
+            <small class="text-muted">
+              May 2026
+            </small>
+
+          </div>
+
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="post-content">
+
+          <p class="mb-4">
+
+            Django is one of the most powerful Python frameworks
+            for building web applications quickly and efficiently.
+
+          </p>
+
+          <p class="mb-4">
+
+            In our university project we integrated Bootstrap
+            Blogy template with Django backend and created
+            a modern blogging platform.
+
+          </p>
+
+          <blockquote class="border-start border-4 ps-4 my-5">
+
+            <h4 class="fw-semibold">
+
+              “Good UI can make even a student project
+              look professional.”
+
+            </h4>
+
+          </blockquote>
+
+          <p>
+
+            We also implemented categories, comments,
+            profiles and authentication system.
+
+          </p>
+
+        </div>
+
+
+
+
+
+        <!-- COMMENTS -->
+
+        <div class="mt-5">
+
+          <h3 class="fw-bold mb-4">
+            Comments
+          </h3>
+
+          <!-- COMMENT -->
+
+          <div class="border rounded-4 p-4 mb-3">
+
+            <div class="d-flex align-items-center gap-3 mb-3">
+
+              <img
+                src="{% static 'img/person/person-m-7.webp' %}"
+                class="rounded-circle"
+                width="45"
+                height="45"
+                alt=""
+              >
+
+              <div>
+
+                <h6 class="mb-0">
+                  Alona
+                </h6>
+
+                <small class="text-muted">
+                  2 hours ago
+                </small>
+
+              </div>
+
+            </div>
+
+            <p class="mb-0">
+
+              The design looks really modern 😄🔥
+
+            </p>
+
+          </div>
+
+
+
+
+
+          <!-- ADD COMMENT -->
+
+          <div class="card border-0 shadow-sm rounded-4 mt-5">
+
+            <div class="card-body p-4">
+
+              <h4 class="fw-bold mb-4">
+                Leave a Comment
+              </h4>
+
+              <form>
+
+                <div class="mb-3">
+
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    placeholder="Write your comment..."
+                  ></textarea>
+
+                </div>
+
+                <button class="btn btn-primary">
+
+                  Post Comment
+
+                </button>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
