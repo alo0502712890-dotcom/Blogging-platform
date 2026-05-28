@@ -44,10 +44,58 @@ class RegisterForm(UserCreationForm):
 
 
 class PostForm(forms.ModelForm):
+
     class Meta:
         model = Post
-        fields = ["title", "slug", "content", "category", "tags", "status"]
 
+        fields = [
+            "title",
+            "slug",
+            "content",
+            "category",
+            "tags",
+            "status"
+        ]
+
+        widgets = {
+
+            "title": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Enter title"
+            }),
+
+            "slug": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "enter-title-slug"
+            }),
+
+            "content": forms.Textarea(attrs={
+                "class": "form-control",
+                "rows": 8,
+                "placeholder": "Write your article..."
+            }),
+
+            "category": forms.Select(attrs={
+                "class": "form-select"
+            }),
+
+            "tags": forms.SelectMultiple(attrs={
+                "class": "form-select"
+            }),
+
+            "status": forms.Select(attrs={
+                "class": "form-select"
+            }),
+        }
+
+        labels = {
+            "title": "Title",
+            "slug": "Slug",
+            "content": "Content",
+            "category": "Category",
+            "tags": "Tags",
+            "status": "Status",
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:

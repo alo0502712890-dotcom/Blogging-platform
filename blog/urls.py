@@ -1,8 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
-from .views import home, register_view
-
+from .views import home, register_view, post_detail, create_post
 
 urlpatterns = [
     path('', home, name='home'),
@@ -22,6 +21,17 @@ urlpatterns = [
         register_view,
         name='register'
     ),
+    path(
+        'post/<int:post_id>/',
+        post_detail,
+        name='post_detail'
+    ),
+    path(
+        'create/',
+        create_post,
+        name='create_post'
+    ),
+
 path(
     'profile/',
     lambda request: render(request, 'profile.html'),
@@ -32,4 +42,5 @@ path(
     lambda request: render(request, 'category.html'),
     name='category'
 ),
+
 ]
