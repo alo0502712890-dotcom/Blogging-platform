@@ -2,12 +2,32 @@
 
 {% block content %}
 
-<h1>
-    Welcome to Blog Platform
+<h1 class="mb-4">
+    Latest Articles
 </h1>
 
-<p>
-    First Django blog project 🚀
-</p>
+{% for post in posts %}
+
+<div class="card mb-3 shadow-sm">
+
+    <div class="card-body">
+
+        <h3 class="card-title">
+            {{ post.title }}
+        </h3>
+
+        <p class="card-text">
+            {{ post.content }}
+        </p>
+
+        <p class="text-muted">
+            Author: {{ post.author }}
+        </p>
+
+    </div>
+
+</div>
+
+{% endfor %}
 
 {% endblock %}
