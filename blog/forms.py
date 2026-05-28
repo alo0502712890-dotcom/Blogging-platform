@@ -6,6 +6,7 @@ from .models import Post, Comment
 
 
 class RegisterForm(UserCreationForm):
+
     username = forms.CharField(
         label="Ім'я користувача",
         widget=forms.TextInput(attrs={
@@ -38,18 +39,44 @@ class RegisterForm(UserCreationForm):
         })
     )
 
+
+    email = forms.EmailField()
+
+
     class Meta:
+
         model = User
-        fields = ["username", "email", "password1", "password2"]
+
+        fields = [
+            "username",
+            "email",
+            "password1",
+            "password2"
+        ]
 
 
 class PostForm(forms.ModelForm):
+
     class Meta:
+
         model = Post
-        fields = ["title", "slug", "content", "category", "tags", "status"]
+
+        fields = [
+            "title",
+            "slug",
+            "content",
+            "category",
+            "tags",
+            "status"
+        ]
 
 
 class CommentForm(forms.ModelForm):
+
     class Meta:
+
         model = Comment
-        fields = ["content"]
+
+        fields = [
+            "content"
+        ]
