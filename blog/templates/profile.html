@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-5">
+
+  <div class="container">
+
+    <div class="row justify-content-center">
+
+      <div class="col-lg-10">
+
+        <!-- PROFILE CARD -->
+
+        <div class="bg-white shadow-sm rounded-4 p-5 mb-5">
+
+          <div class="row align-items-center">
+
+            <!-- AVATAR -->
+
+            <div class="col-lg-3 text-center mb-4 mb-lg-0">
+
+              <img
+                src="{% static 'img/person/person-f-12.webp' %}"
+                class="rounded-circle img-fluid shadow-sm"
+                width="180"
+                alt=""
+              >
+
+            </div>
+
+
+
+
+
+            <!-- INFO -->
+
+            <div class="col-lg-9">
+
+              <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+
+                <h1 class="fw-bold mb-0">
+
+                  Sofia Vikenteva
+
+                </h1>
+
+                <span class="badge bg-primary px-3 py-2">
+
+                  Frontend Developer
+
+                </span>
+
+              </div>
+
+
+
+
+
+              <p class="text-muted fs-5 mb-4">
+
+                Passionate frontend developer building modern
+                Django web applications with Bootstrap UI.
+
+              </p>
+
+
+
+
+
+              <!-- STATS -->
+
+              <div class="d-flex gap-5 flex-wrap">
+
+                <div>
+
+                  <h3 class="fw-bold mb-0">
+                    12
+                  </h3>
+
+                  <small class="text-muted">
+                    Posts
+                  </small>
+
+                </div>
+
+
+
+
+
+                <div>
+
+                  <h3 class="fw-bold mb-0">
+                    48
+                  </h3>
+
+                  <small class="text-muted">
+                    Comments
+                  </small>
+
+                </div>
+
+
+
+
+
+                <div>
+
+                  <h3 class="fw-bold mb-0">
+                    1.2k
+                  </h3>
+
+                  <small class="text-muted">
+                    Followers
+                  </small>
+
+                </div>
+
+              </div>
+
+
+
+
+
+              <!-- SOCIALS -->
+
+              <div class="d-flex gap-3 mt-4">
+
+                <a href="#" class="btn btn-outline-dark rounded-circle">
+                  <i class="bi bi-facebook"></i>
+                </a>
+
+                <a href="#" class="btn btn-outline-dark rounded-circle">
+                  <i class="bi bi-instagram"></i>
+                </a>
+
+                <a href="#" class="btn btn-outline-dark rounded-circle">
+                  <i class="bi bi-twitter"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+
+        <!-- USER POSTS -->
+
+        <div>
+
+          <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h2 class="fw-bold">
+
+              User Posts
+
+            </h2>
+
+            <a href="/create/" class="btn btn-primary">
+
+              Create Post
+
+            </a>
+
+          </div>
+
+
+
+
+
+          <div class="row gy-4">
+
+            <!-- POST CARD -->
+
+            <div class="col-lg-6">
+
+              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+
+                <img
+                  src="{% static 'img/blog/blog-post-1.webp' %}"
+                  class="img-fluid"
+                  alt=""
+                >
+
+                <div class="card-body p-4">
+
+                  <span class="badge bg-primary mb-3">
+
+                    Technology
+
+                  </span>
+
+
+
+
+
+                  <h4 class="fw-bold">
+
+                    Building a Django Blog Platform
+
+                  </h4>
+
+
+
+
+
+                  <p class="text-muted">
+
+                    Creating a responsive blogging platform
+                    using Django and Bootstrap.
+
+                  </p>
+
+
+
+
+
+                  <div class="d-flex justify-content-between align-items-center mt-4">
+
+                    <small class="text-muted">
+
+                      May 28, 2026
+
+                    </small>
+
+
+
+
+
+                    <a href="/post/" class="btn btn-outline-primary">
+
+                      Read More
+
+                    </a>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+
+
+            <!-- POST CARD -->
+
+            <div class="col-lg-6">
+
+              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+
+                <img
+                  src="{% static 'img/blog/blog-post-2.webp' %}"
+                  class="img-fluid"
+                  alt=""
+                >
+
+                <div class="card-body p-4">
+
+                  <span class="badge bg-dark mb-3">
+
+                    Bootstrap
+
+                  </span>
+
+
+
+
+
+                  <h4 class="fw-bold">
+
+                    Responsive UI Design
+
+                  </h4>
+
+
+
+
+
+                  <p class="text-muted">
+
+                    Building adaptive interfaces for desktop,
+                    tablet and mobile devices.
+
+                  </p>
+
+
+
+
+
+                  <div class="d-flex justify-content-between align-items-center mt-4">
+
+                    <small class="text-muted">
+
+                      May 27, 2026
+
+                    </small>
+
+
+
+
+
+                    <a href="/post/" class="btn btn-outline-primary">
+
+                      Read More
+
+                    </a>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
