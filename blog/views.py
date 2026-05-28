@@ -1,5 +1,4 @@
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .forms import RegisterForm
@@ -41,7 +40,7 @@ def register_view(request):
 
             login(request, user)
 
-            return redirect("post_list")
+            return redirect("home")
 
     else:
         form = RegisterForm()
