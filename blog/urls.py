@@ -31,4 +31,16 @@ urlpatterns = [
         create_post,
         name='create_post'
     ),
+
+path(
+    'profile/',
+    lambda request: render(request, 'profile.html'),
+    name='profile'
+),
+path(
+    'category/',
+    lambda request: render(request, 'category.html'),
+    name='category'
+),
+
 ]
