@@ -31,7 +31,7 @@
 
         <span class="badge bg-primary mb-3 px-3 py-2">
 
-          Technology
+          {{ post.category.name }}
 
         </span>
 
@@ -43,7 +43,7 @@
 
         <h1 class="fw-bold display-5 mb-4">
 
-          Building a Modern Django Blog Platform
+          {{ post.title }}
 
         </h1>
 
@@ -68,11 +68,15 @@
             <div>
 
               <h6 class="mb-0 fw-semibold">
-                Sofia Vikenteva
+
+                {{ post.author.username }}
+
               </h6>
 
               <small class="text-muted">
-                Frontend Developer
+
+                Author
+
               </small>
 
             </div>
@@ -86,7 +90,8 @@
           <div class="text-muted">
 
             <i class="bi bi-calendar"></i>
-            May 28, 2026
+
+            {{ post.created_at|date:"d M Y" }}
 
           </div>
 
@@ -97,7 +102,8 @@
           <div class="text-muted">
 
             <i class="bi bi-chat-dots"></i>
-            12 Comments
+
+            {{ post.comments.count }} Comments
 
           </div>
 
@@ -111,80 +117,11 @@
 
         <div class="bg-white shadow-sm rounded-4 p-5 mb-5">
 
-          <p class="fs-5 mb-4">
+          <p class="fs-5">
 
-            Django is one of the most powerful Python frameworks
-            for creating scalable web applications. In this project,
-            we integrated a premium Bootstrap template with Django backend
-            architecture.
+            {{ post.content }}
 
           </p>
-
-
-
-
-
-          <p class="fs-5 mb-4">
-
-            The platform includes authentication system,
-            comments, profile pages, categories, tags and
-            responsive UI for all devices.
-
-          </p>
-
-
-
-
-
-          <blockquote class="border-start border-5 border-primary ps-4 my-5">
-
-            <h3 class="fw-semibold">
-
-              “Good UI makes even a student project feel professional.”
-
-            </h3>
-
-          </blockquote>
-
-
-
-
-
-          <p class="fs-5 mb-4">
-
-            We also implemented Git branching workflow,
-            merge conflict resolving and collaborative
-            development process.
-
-          </p>
-
-
-
-
-
-          <h3 class="fw-bold mt-5 mb-4">
-
-            Technologies Used
-
-          </h3>
-
-
-
-
-
-          <ul class="fs-5">
-
-            <li>Django</li>
-
-            <li>Bootstrap 5</li>
-
-            <li>SQLite</li>
-
-            <li>Git & GitHub</li>
-
-            <li>HTML / CSS</li>
-
-          </ul>
 
         </div>
 
@@ -196,17 +133,16 @@
 
         <div class="mb-5">
 
-          <a href="#" class="btn btn-outline-primary me-2 mb-2">
-            Django
+          {% for tag in post.tags.all %}
+
+          <a
+            href="#"
+            class="btn btn-outline-primary me-2 mb-2"
+          >
+            {{ tag.name }}
           </a>
 
-          <a href="#" class="btn btn-outline-primary me-2 mb-2">
-            Bootstrap
-          </a>
-
-          <a href="#" class="btn btn-outline-primary me-2 mb-2">
-            Python
-          </a>
+          {% endfor %}
 
         </div>
 
@@ -228,7 +164,7 @@
 
 
 
-          <!-- COMMENT -->
+          {% for comment in post.comments.all %}
 
           <div class="d-flex gap-4 mb-5">
 
@@ -245,18 +181,26 @@
               <div class="d-flex align-items-center gap-3 mb-2">
 
                 <h5 class="mb-0 fw-semibold">
-                  Alona
+
+                  {{ comment.author.username }}
+
                 </h5>
 
                 <small class="text-muted">
-                  2 hours ago
+
+                  {{ comment.created_at|date:"d M Y H:i" }}
+
                 </small>
 
               </div>
 
+
+
+
+
               <p class="mb-0">
 
-                The design and structure look really modern 😄🔥
+                {{ comment.content }}
 
               </p>
 
@@ -264,11 +208,24 @@
 
           </div>
 
+          {% empty %}
+
+          <p class="text-muted">
+
+            No comments yet
+
+          </p>
+
+          {% endfor %}
+
+
 
 
 
 
           <!-- COMMENT FORM -->
+
+          {% if user.is_authenticated %}
 
           <div class="mt-5">
 
@@ -278,17 +235,28 @@
 
             </h4>
 
-            <form>
+
+
+
+
+            <form method="post">
+
+              {% csrf_token %}
 
               <div class="mb-4">
 
                 <textarea
+                  name="content"
                   class="form-control rounded-4"
                   rows="6"
                   placeholder="Write your comment..."
                 ></textarea>
 
               </div>
+
+
+
+
 
               <button class="btn btn-primary px-4 py-2">
 
@@ -300,127 +268,7 @@
 
           </div>
 
-        </div>
-
-
-
-
-
-        <!-- RELATED POSTS -->
-
-        <div>
-
-          <h3 class="fw-bold mb-4">
-
-            Related Posts
-
-          </h3>
-
-
-
-
-
-          <div class="row gy-4">
-
-            <div class="col-lg-4">
-
-              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
-
-                <img
-                  src="{% static 'img/blog/blog-post-2.webp' %}"
-                  class="img-fluid"
-                  alt=""
-                >
-
-                <div class="card-body">
-
-                  <h5 class="fw-bold">
-
-                    Bootstrap Integration
-
-                  </h5>
-
-                  <p>
-
-                    How we connected Bootstrap template to Django.
-
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-
-
-            <div class="col-lg-4">
-
-              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
-
-                <img
-                  src="{% static 'img/blog/blog-post-3.webp' %}"
-                  class="img-fluid"
-                  alt=""
-                >
-
-                <div class="card-body">
-
-                  <h5 class="fw-bold">
-
-                    Git Workflow
-
-                  </h5>
-
-                  <p>
-
-                    Working with branches and pull requests.
-
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-
-
-            <div class="col-lg-4">
-
-              <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
-
-                <img
-                  src="{% static 'img/blog/blog-post-4.webp' %}"
-                  class="img-fluid"
-                  alt=""
-                >
-
-                <div class="card-body">
-
-                  <h5 class="fw-bold">
-
-                    Responsive Design
-
-                  </h5>
-
-                  <p>
-
-                    Creating adaptive layouts for all devices.
-
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
+          {% endif %}
 
         </div>
 

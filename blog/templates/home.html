@@ -9,17 +9,16 @@
 
     <div class="blog-grid">
 
-      {% for post in posts %}
+      <!-- FEATURED POST -->
 
-      <!-- MAIN BIG POST -->
-      {% if forloop.first %}
+      {% if posts %}
 
       <article class="blog-item featured">
 
         <img
           src="{% static 'img/blog/blog-post-1.webp' %}"
-          alt=""
           class="img-fluid"
+          alt=""
         >
 
         <div class="blog-content">
@@ -27,56 +26,39 @@
           <div class="post-meta">
 
             <span class="date">
-              {{ post.created_at }}
+              {{ posts.0.created_at|date:"d M Y" }}
             </span>
 
             <span class="category">
-              Technology
+              {{ posts.0.category.name }}
             </span>
 
           </div>
+
+
+
+
 
           <h2 class="post-title">
-            {{ post.title }}
+
+            <a
+              href="{% url 'post_detail' posts.0.id %}"
+              class="text-white text-decoration-none"
+            >
+              {{ posts.0.title }}
+            </a>
+
           </h2>
 
+
+
+
+
           <p class="text-white">
-            {{ post.content|truncatewords:20 }}
+
+            {{ posts.0.content|truncatewords:20 }}
+
           </p>
-
-        </div>
-
-      </article>
-
-      {% else %}
-
-      <!-- SMALL POSTS -->
-
-      <article class="blog-item">
-
-        <img
-          src="{% static 'img/blog/blog-post-2.webp' %}"
-          alt=""
-          class="img-fluid"
-        >
-
-        <div class="blog-content">
-
-          <div class="post-meta">
-
-            <span class="date">
-              {{ post.created_at }}
-            </span>
-
-            <span class="category">
-              Blog
-            </span>
-
-          </div>
-
-          <h3 class="post-title">
-            {{ post.title }}
-          </h3>
 
         </div>
 
@@ -84,83 +66,63 @@
 
       {% endif %}
 
-      {% endfor %}
-
-    </div>
-
-  </div>
-
-</section>
 
 
 
 
 
-<section id="latest-posts" class="latest-posts section">
+      <!-- SMALL POSTS -->
 
-  <div class="container section-title">
+      {% for post in posts|slice:"1:4" %}
 
-    <h2>
-      Latest Posts
-    </h2>
+      <article class="blog-item">
 
-  </div>
+        <img
+          src="{% static 'img/blog/blog-post-2.webp' %}"
+          class="img-fluid"
+          alt=""
+        >
 
-  <div class="container">
+        <div class="blog-content">
 
-    <div class="row gy-4">
+          <div class="post-meta">
 
-      {% for post in posts %}
+            <span class="date">
+              {{ post.created_at|date:"d M Y" }}
+            </span>
 
-      <div class="col-lg-4">
-
-        <article>
-
-          <div class="post-img">
-
-            <img
-              src="{% static 'img/blog/blog-post-3.webp' %}"
-              alt=""
-              class="img-fluid"
-            >
+            <span class="category">
+              {{ post.category.name }}
+            </span>
 
           </div>
 
-          <p class="post-category">
-            Programming
-          </p>
 
-          <h2 class="title">
-            {{ post.title }}
-          </h2>
 
-          <p>
-            {{ post.content|truncatewords:15 }}
-          </p>
 
-          <div class="d-flex align-items-center">
 
-            <img
-              src="{% static 'img/person/person-f-12.webp' %}"
-              alt=""
-              class="img-fluid post-author-img flex-shrink-0"
+          <h3 class="post-title">
+
+            <a
+              href="{% url 'post_detail' post.id %}"
+              class="text-white text-decoration-none"
             >
+              {{ post.title }}
+            </a>
 
-            <div class="post-meta">
+          </h3>
 
-              <p class="post-author">
-                {{ post.author }}
-              </p>
+        </div>
 
-              <p class="post-date">
-                {{ post.created_at }}
-              </p>
+      </article>
 
-            </div>
+      {% empty %}
 
-          </div>
+      <div class="text-center py-5">
 
-        </article>
+        <h3>
+          No posts yet
+        </h3>
 
       </div>
 
