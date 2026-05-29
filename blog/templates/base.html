@@ -107,13 +107,19 @@
 
         <!-- SEARCH -->
 
-        <form class="d-flex">
+        <form
+            class="d-flex"
+            method="GET"
+            action="{% url 'home' %}"
+        >
 
-          <input
-            class="form-control"
-            type="search"
-            placeholder="Search..."
-          >
+            <input
+                class="form-control"
+                type="search"
+                name="q"
+                placeholder="Search..."
+                value="{{ request.GET.q }}"
+            >
 
         </form>
 

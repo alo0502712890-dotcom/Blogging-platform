@@ -73,6 +73,19 @@
 
       <!-- SMALL POSTS -->
 
+        {% if not posts %}
+
+            <div class="text-center py-5">
+
+                <h3>No posts found</h3>
+                <p class="text-muted">
+                    Try another search query.
+                </p>
+
+            </div>
+
+        {% endif %}
+
       {% for post in posts|slice:"1:4" %}
 
       <article class="blog-item">
@@ -116,15 +129,6 @@
 
       </article>
 
-      {% empty %}
-
-      <div class="text-center py-5">
-
-        <h3>
-          No posts yet
-        </h3>
-
-      </div>
 
       {% endfor %}
 

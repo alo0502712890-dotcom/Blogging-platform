@@ -2,7 +2,7 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Q
 from .forms import CommentForm
 from .forms import RegisterForm, PostForm
 
@@ -12,12 +12,24 @@ from .models import Category
 
 
 def home(request):
-    posts = Post.objects.filter(status="published")
+    posts = Post.objects.filter(
+        status="published"
+    )
+
+    query = request.GET.get("q")
+
+    if query:
+        posts = posts.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query)
+        )
+
     return render(
         request,
         'home.html',
         {'posts': posts}
     )
+
 def about_view(request):
     return render(request, "about.html")
 
