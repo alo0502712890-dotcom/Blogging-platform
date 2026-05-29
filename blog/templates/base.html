@@ -135,12 +135,15 @@
                   Hello, {{ user.username }}
               </span>
 
+                {% if user.profile.role != "reader" %}
               <a
                 href="/create"
                 class="btn btn-primary"
               >
                 Create Post
               </a>
+
+                {% endif %}
 
               <form
                 method="post"
