@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-5">
+
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <div class="col-lg-6">
+
+        <h1 class="fw-bold mb-4">
+          About Blogy
+        </h1>
+
+        <p class="lead text-muted">
+
+          Blogy is a modern blogging platform built with
+          Django and Bootstrap.
+
+        </p>
+
+        <p>
+
+          Our goal is to create a simple and convenient place
+          where authors can share knowledge, ideas and experience.
+
+        </p>
+
+        <p>
+
+          The platform supports authentication, profiles,
+          categories, comments and responsive design.
+
+        </p>
+
+      </div>
+
+      <div class="col-lg-6 text-center">
+
+        <img
+          src="{% static 'img/blog/blog-post-1.webp' %}"
+          class="img-fluid rounded-4 shadow"
+          alt=""
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+<section class="py-5 bg-light">
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <h2 class="fw-bold">
+        Our Team
+      </h2>
+
+    </div>
+
+
+
+
+
+    <div class="row gy-4">
+
+      <div class="col-lg-6">
+
+        <div class="card border-0 shadow-sm rounded-4">
+
+          <div class="card-body text-center p-4">
+
+            <h4 class="fw-bold">
+              Sofia
+            </h4>
+
+            <p class="text-primary">
+              Frontend Developer
+            </p>
+
+            <p>
+              UI design, Bootstrap integration,
+              responsive layouts.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+
+
+      <div class="col-lg-6">
+
+        <div class="card border-0 shadow-sm rounded-4">
+
+          <div class="card-body text-center p-4">
+
+            <h4 class="fw-bold">
+              Alona
+            </h4>
+
+            <p class="text-success">
+              Backend Developer
+            </p>
+
+            <p>
+              Django logic, authentication,
+              database integration.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
