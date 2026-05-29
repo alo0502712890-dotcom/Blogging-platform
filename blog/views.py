@@ -157,3 +157,23 @@ def delete_post(request, post_id):
         "delete_post.html",
         {"post": post}
     )
+
+def category_posts(request, category_id):
+
+    category = get_object_or_404(
+        Category,
+        id=category_id
+    )
+
+    posts = Post.objects.filter(
+        category=category,
+        status="published"
+    )
+
+    return render(
+        request,
+        "home.html",
+        {
+            "posts": posts
+        }
+    )
