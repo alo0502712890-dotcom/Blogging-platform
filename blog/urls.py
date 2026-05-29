@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from .views import home, register_view, post_detail, create_post, profile_view, category_list, about_view, contact_view, \
-    delete_post, update_post
+    delete_post, update_post, category_posts
 
 urlpatterns = [
     path('', home, name='home'),
@@ -53,6 +53,12 @@ urlpatterns = [
         category_list,
         name='category'
     ),
+    path(
+        'category/<int:category_id>/',
+        category_posts,
+        name='category_posts'
+    ),
+
     path(
         "about/",
         about_view,
