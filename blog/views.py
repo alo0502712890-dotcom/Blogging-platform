@@ -3,9 +3,12 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 
+from .forms import CommentForm
 from .forms import RegisterForm, PostForm
+
 from .models import Profile, Post
 from .models import Category
+
 
 
 def home(request):
@@ -54,6 +57,22 @@ def post_detail(request, post_id):
         Post,
         id=post_id
     )
+    if request.method == "POST" and request.user.is_authenticated:
+
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+
+            comment.post = post
+            comment.author = request.user
+
+            comment.save()
+
+            return redirect(
+                "post_detail",
+                post_id=post.id
+            )
     return render(
         request,
         'post_detail.html',
